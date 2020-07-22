@@ -46,6 +46,21 @@ app.get("catchall", "**") { (req) -> String in
 “**” 이거는 catchall뒤에 따라오는 모든 components를 가져오는것!
 Ex) http://127.0.0.1:8080/catchall/test/tass/devy -> Hello, test tass devy
 
+"*" 이건 아무거나 다 받아드린다는것
+app.get("test", "*", "test2) { req -> String in 
+    ...
+}
+
+.../test/aaa/test2 -> test, aaa, test2
+.../test/bbb/test2 -> test, bbb, test2
+
+HTTP method 
+get, post, patch, put, delete
+
+app.on(.OPTION, "test", "test2") { req -> String in 
+    ...
+}
+
 
 # 5. Body 용량 제한
 원래 vapor의 기본 body의 용량은 16kb인데, 
