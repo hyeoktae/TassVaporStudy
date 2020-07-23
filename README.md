@@ -93,3 +93,9 @@ app.on(.POST, "listings", body: .collect(maxSize: "100mb")) { (req) -> EventLoop
 Return 은 eventloopfuture으로 해야하는데, 끝났을때는 끝났다고 명시를 해줘야함. Return 뒤에. 
 위에 maxSize 를 1kb 로 했는데, request가 많으면 413 payload too large가 리턴된다. 
 
+app.on(.POST, "upload", body: .stream) { req in
+    ...
+}
+
+이런식으로 .stream을 하는경우도 있는데, 이러면 req.body.data 는 nil이다. 꼭!!! req.body.drain을 써야 한다. 
+
