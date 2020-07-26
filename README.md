@@ -113,15 +113,19 @@ func routes(_ app: Application) throws {
 
 # 9. Apple Airport MDNS
 
-```
-https://www.duiadns.net
-```
+[duiadns](https://www.duiadns.net)
 
-여기에서 airport DNS를 할수있다. 
+여기에서 airport DNS를 할수있다. 설정방법은 잘 나와 있음!!! 따라하면 됨 ㅋㅋ
 
 
 # 10. apple airport port 설정
 
 Airport - 편집 - 네트워크 - 포트설정 - + 하고
+
+![포트설정](https://user-images.githubusercontent.com/48010847/88486247-66ddd400-cfb7-11ea-87e8-0f3f0b647ddc.png)
+
+설명에는 아무거나 넣고,
+공용 TCP에 포트번호(보통은 8080), 개인 TCP에도 포트번호 넣어준다. 그리고 저장!
+이걸 해야만 test.test:8080 에 접근 가능하다. :xxxx 는 입력한 포트번호!
 
 
