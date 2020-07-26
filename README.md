@@ -110,3 +110,11 @@ func routes(_ app: Application) throws {
 ```
 결과 -> [GET /, GET /hello, GET /Hello/:name, POST /info, POST /test, GET /catchall/**, POST /listings]
 
+
+# 9. Apple Airport MDNS
+
+```
+https://www.duiadns.net
+```
+
+여기에서 airport DNS를 할수있다. 
