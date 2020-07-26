@@ -118,3 +118,10 @@ https://www.duiadns.net
 ```
 
 여기에서 airport DNS를 할수있다. 
+
+
+# 10. apple airport port 설정
+
+Airport - 편집 - 네트워크 - 포트설정 - + 하고
+
+
