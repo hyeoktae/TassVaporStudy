@@ -131,3 +131,14 @@ Airport - 편집 - 네트워크 - 포트설정 - + 하고
 
 # 11. HTTPS
 이건 도통 방법을 모르겠다.. 알려주세요ㅜㅜ
+
+
+# 12. redirect
+
+```
+app.get("redirect2") { (req) -> String in
+    req.client.get(URI(string: "http://devy.tass.duia.us:1218/coffee"))
+    return ""
+  }
+```
+이런식으로 하는거 같다. 빌드하고 실험해봐야겠다.
