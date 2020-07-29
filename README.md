@@ -141,4 +141,4 @@ app.get("redirect2") { (req) -> String in
     return ""
   }
 ```
-이런식으로 하는거 같다. 빌드하고 실험해봐야겠다.
+
