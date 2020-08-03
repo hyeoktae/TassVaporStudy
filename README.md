@@ -7,14 +7,14 @@ Server-side-swift
 Route parameters
 
 # 1. 파라미터 받는 방법
-```
+```swift
 app.get("Hello", ":name") { (req) -> String in
     guard let name = try? req.parameters.get("name") else { throw Abort(.badRequest) }
     return "Hello, \(name)"
   }
 ```
 # 2. json으로 받는방법
-```
+```swift
 app.post("info") { (req) -> String in
     guard let data = try? req.content.decode(InfoData.self) else { throw Abort(.badRequest) }
     return "hello \(data.name)"
@@ -25,7 +25,7 @@ struct InfoData: Content {
 }
 ```
 # 3. Json 으로 response 내보내기
-```
+```swift
 app.post("test") { (req) -> InfoResponse in
     return InfoResponse(res: "response!")
   }
@@ -37,7 +37,7 @@ struct InfoResponse: Content {
 
 
 # 4. Catchall
-```
+```swift
 app.get("catchall", "**") { (req) -> String in
     let name = req.parameters.getCatchall().joined(separator: " ")
     return "Hello, \(name)"
@@ -47,7 +47,7 @@ app.get("catchall", "**") { (req) -> String in
 Ex) http://127.0.0.1:8080/catchall/test/tass/devy -> Hello, test tass devy
 
 "*" 이건 아무거나 다 받아드린다는것
-```
+```swift
 app.get("test", "*", "test2) { req -> String in 
     ...
 }
@@ -57,7 +57,7 @@ app.get("test", "*", "test2) { req -> String in
 
 HTTP method 
 get, post, patch, put, delete
-```
+```swift
 app.on(.OPTION, "test", "test2") { req -> String in 
     ...
 }
@@ -72,7 +72,7 @@ app.routes.defaultMaxBodySize = "500kb"
 
 # 6. Body 의 data 긁어오기
 Async 하게 동작한다.
-```
+```swift
 app.on(.POST, "listings", body: .collect(maxSize: "1kb")) { (req) -> EventLoopFuture<String> in
     return req.body.collect().flatMap { (buffer) -> EventLoopFuture<String> in
       guard let buf = buffer else { return req.eventLoop.makeFailedFuture(ErrorType.noData) }
@@ -93,7 +93,7 @@ app.on(.POST, "listings", body: .collect(maxSize: "100mb")) { (req) -> EventLoop
 
 Return 은 eventloopfuture으로 해야하는데, 끝났을때는 끝났다고 명시를 해줘야함. Return 뒤에. 
 위에 maxSize 를 1kb 로 했는데, request가 많으면 413 payload too large가 리턴된다. 
-```
+```swift
 app.on(.POST, "upload", body: .stream) { req in
     ...
 }
@@ -102,7 +102,7 @@ app.on(.POST, "upload", body: .stream) { req in
 
 
 # 8. 모든 route확인하기?
-```
+```swift
 func routes(_ app: Application) throws {
     ...
     print(app.routes.all)
@@ -135,7 +135,7 @@ Airport - 편집 - 네트워크 - 포트설정 - + 하고
 
 # 12. redirect
 
-```
+```swift
 app.get("redirect2") { (req) -> String in
     req.client.get(URI(string: "http://devy.tass.duia.us:1218/coffee"))
     return ""
@@ -144,7 +144,7 @@ app.get("redirect2") { (req) -> String in
 
 # 13. validatable
 
-```
+```swift
 struct CreateUser: Content {
   var uid: String
   var name: String
@@ -161,7 +161,7 @@ extension CreateUser: Validatable {
 
 사용법
 
-```
+```swift
 app.get("checkUser") { (req) -> CreateUser in
     do {
       try CreateUser.validate(query: req)
@@ -174,7 +174,7 @@ app.get("checkUser") { (req) -> CreateUser in
 
 `/checkUser?&uid=test&name=test&email=test@test.d`
 -> 
-```
+```swift
 {
 "uid": "test",
 "name": "test",
@@ -185,7 +185,7 @@ app.get("checkUser") { (req) -> CreateUser in
 
 `/checkUser?name=test&email=test@test.d`
 ->
-```
+```swift
 {
 "error": true,
 "reason": "The data couldn’t be read because it is missing."
@@ -195,7 +195,7 @@ app.get("checkUser") { (req) -> CreateUser in
 
 `/checkUser?name=test&email=test&uid=test`
 ->
-```
+```swift
 {
 "error": true,
 "reason": "The operation couldn’t be completed. (Vapor.ValidationsError error 1.)"
