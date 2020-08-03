@@ -142,3 +142,63 @@ app.get("redirect2") { (req) -> String in
   }
 ```
 
+# 13. validatable
+
+```
+struct CreateUser: Content {
+  var uid: String
+  var name: String
+  var email: String
+}
+
+extension CreateUser: Validatable {
+  static func validations(_ validations: inout Validations) {
+    validations.add("email", as: String.self, is: .email, required: true)
+    validations.add("name", as: String.self, is: !.empty, required: true)
+  }
+}
+```
+
+사용법
+
+```
+app.get("checkUser") { (req) -> CreateUser in
+    do {
+      try CreateUser.validate(query: req)
+      return try req.query.decode(CreateUser.self)
+    } catch (let err) {
+      throw Abort(.unauthorized, reason: err.localizedDescription)
+    }
+  }
+```
+
+`/checkUser?&uid=test&name=test&email=test@test.d`
+-> 
+```
+{
+"uid": "test",
+"name": "test",
+"email": "test@test.d"
+}
+```
+
+
+`/checkUser?name=test&email=test@test.d`
+->
+```
+{
+"error": true,
+"reason": "The data couldn’t be read because it is missing."
+}
+```
+
+
+`/checkUser?name=test&email=test&uid=test`
+->
+```
+{
+"error": true,
+"reason": "The operation couldn’t be completed. (Vapor.ValidationsError error 1.)"
+}
+```
+
