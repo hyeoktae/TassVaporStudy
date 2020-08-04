@@ -217,4 +217,4 @@ Run     46423 tass   12u  IPv4 0xfa05e5225bffb199      0t0  TCP localhost:http-a
 ```
 이런식으로 나오는데 PID 값을 복사한 후 
 
-`kill 46423` 이러면 해당 포트가 죽음! 
+`kill 46423` 이러면 해당 포트가 죽음!  
