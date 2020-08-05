@@ -98,4 +98,24 @@ let futureStatus = userDidSave.transform(to: HTTPStatus.ok)
 print(futureStatus) // EventLoopFuture<HTTPStatus>
 ```
 
+### Chaining
 
+```swift
+/// Assume we get a future string back from some API
+let futureString: EventLoopFuture<String> = ...
+
+/// Assume we have created an HTTP client
+let client: Client = ... 
+
+/// Transform the string to a url, then to a response
+let futureResponse = futureString.flatMapThrowing { string in
+    guard let url = URL(string: string) else {
+        throw Abort(.badRequest, reason: "Invalid URL string: \(string)")
+    }
+    return url
+}.flatMap { url in
+    client.get(url)
+}
+
+print(futureResponse) // EventLoopFuture<ClientResponse>
+```
