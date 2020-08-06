@@ -119,3 +119,63 @@ let futureResponse = futureString.flatMapThrowing { string in
 
 print(futureResponse) // EventLoopFuture<ClientResponse>
 ```
+
+
+## Future
+
+
+### makeFuture
+
+```swift
+// Create a pre-succeeded future.
+let futureString: EventLoopFuture<String> = eventLoop.makeSucceededFuture("hello")
+
+// Create a pre-failed future.
+let futureString: EventLoopFuture<String> = eventLoop.makeFailedFuture(error)
+```
+
+pre-completed future
+
+
+### whenComplete
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: EventLoopFuture<String> = ...
+
+futureString.whenComplete { result in
+    switch result {
+    case .success(let string):
+        print(string) // The actual String
+    case .failure(let error):
+        print(error) // A Swift Error
+    }
+}
+```
+
+
+complete되면 뭐할래? 
+많은 callback들을 추가할수 있다. 
+
+
+### Wait
+
+```swift
+/// Assume we get a future string back from some API
+let futureString: EventLoopFuture<String> = ...
+
+/// Block until the string is ready
+let string = try futureString.wait()
+print(string) /// String
+```
+* wait 는 콜백을 동기화처리한다. 비동기아님! 
+* wait 는 background or main thread 에서 실행해야한다. 
+* wait를 event loop 에서 호출하면 assertion 오류 난다
+
+
+
+
+
+
+
+
