@@ -191,7 +191,7 @@ promiseString.fail(...)
 ```
 
 promise는 결과타입? ex..String, Int...를 미리 정해두는거 같음
-
+한번만 successd할수있다. 나중에 들어오는 완료는 무시한다.
 
 
 
