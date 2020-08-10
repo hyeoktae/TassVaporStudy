@@ -173,8 +173,24 @@ print(string) /// String
 * wait를 event loop 에서 호출하면 assertion 오류 난다
 
 
+### Promise
 
+```swift
+let eventLoop: EventLoop 
 
+// Create a new promise for some string.
+let promiseString = eventLoop.makePromise(of: String.self)
+print(promiseString) // EventLoopPromise<String>
+print(promiseString.futureResult) // EventLoopFuture<String>
+
+// Completes the associated future.
+promiseString.succeed("Hello")
+
+// Fails the associated future.
+promiseString.fail(...)
+```
+
+promise는 결과타입? ex..String, Int...를 미리 정해두는거 같음
 
 
 
