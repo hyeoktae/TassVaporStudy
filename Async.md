@@ -1,6 +1,6 @@
  # Async
 
-`EventLoopFuture`  읽기 전용  / 참조값이 아직 사용 못할수도 있음
+`EventLoopFuture`  읽기 전용  / 참조값이 아직 사용 못할수도 있음 
 
 `EventLoopPromise` 읽기, 쓰기 / 어떤 값을 비동기적으로 처리한다는 약속? 
 
