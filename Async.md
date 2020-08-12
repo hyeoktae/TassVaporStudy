@@ -173,7 +173,7 @@ print(string) /// String
 * wait를 event loop 에서 호출하면 assertion 오류 난다
 
 
-### Promise
+### Promise  
 
 ```swift
 let eventLoop: EventLoop 
