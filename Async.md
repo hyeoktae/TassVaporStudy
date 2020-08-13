@@ -18,7 +18,7 @@ method | argument | description
 ### map
 
 ```swift
-/// Assume we get a future string back from some API
+/// Assume we get a future string back from some API 
 let futureString: EventLoopFuture<String> = ...
 
 /// Map the future string to an integer
