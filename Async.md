@@ -30,7 +30,7 @@ let futureInt = futureString.map { string in
 /// We now have a future integer
 print(futureInt) // EventLoopFuture<Int>
 ```
-
+    
 
 ### flatMapThrowing
 
