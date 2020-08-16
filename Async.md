@@ -1,6 +1,6 @@
  # Async
 
-`EventLoopFuture`  읽기 전용  / 참조값이 아직 사용 못할수도 있음 
+`EventLoopFuture`  읽기 전용  / 참조값이 아직 사용 못할수도 있음  
 
 `EventLoopPromise` 읽기, 쓰기 / 어떤 값을 비동기적으로 처리한다는 약속? 
 
@@ -192,6 +192,6 @@ promiseString.fail(...)
 
 promise는 결과타입? ex..String, Int...를 미리 정해두는거 같음
 한번만 successd할수있다. 나중에 들어오는 완료는 무시한다.
-어느 Thread에서도 complete할수있다. 이게 promise가 초기화해야하는 이유다. 
+어느 Thread에서도 complete할수있다. 이게 promise가 초기화해야하는 이유다.  
 
 
