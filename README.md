@@ -3,7 +3,7 @@ vapor를 한번 공부해보쟈
 
 
 Server-side-swift
-
+   
 Route parameters
 
 # 1. 파라미터 받는 방법
